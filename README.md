@@ -1,75 +1,74 @@
 # keyhunt
 
-Tool for hunt privatekeys for crypto currencies that use secp256k1 elliptic curve
+Ferramenta para procurar chaves privadas para criptomoedas que utilizam a curva elíptica secp256k1
 
-Post: https://bitcointalk.org/index.php?topic=5322040.0
+Postagem: https://bitcointalk.org/index.php?topic=5322040.0
 
-Work for Bitcoin
-- address compress or uncompress
-- hashes rmd160 compress or uncompress
-- publickeys compress or uncompress
+Funciona para Bitcoin
+- endereços comprimidos ou não comprimidos
+- hashes rmd160 comprimidos ou não comprimidos
+- chaves públicas comprimidas ou não comprimidas
 
-Work for Ethereum
-- address
+Funciona para Ethereum
+- endereços
 
 # TL:DR
 
-- Download and build
-- Run against puzzle 66 (address mode)
+- Baixar e compilar
+- Executar contra o puzzle 66 (modo endereço)
 
 ```
 ./keyhunt -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
-
 ```
 
-You need to add `-t numberThreads` to get better speed
+Você precisa adicionar `-t numberThreads` para obter uma melhor velocidade
 
-- Run against Puzzle 125 (bsgs mode)
+- Executar contra o Puzzle 125 (modo bsgs)
 
 ```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R
 ```
 
-You need to add `-t numberThreads` and `-k factor` to get better speed
+Você precisa adicionar `-t numberThreads` e `-k factor` para obter uma melhor velocidade
 
-## Free Code
+## Código Livre
 
-This code is free of charge, see the licence for more details. https://github.com/albertobsd/keyhunt/blob/main/LICENSE
+Este código é gratuito, veja a licença para mais detalhes. https://github.com/albertobsd/keyhunt/blob/main/LICENSE
 
-Although this project is a hobby for me, it still involves a considerable amount of work.
-If you would like to support this project, please consider donating at https://github.com/albertobsd/keyhunt#donations.
+Embora este projeto seja um hobby para mim, ainda envolve uma quantidade considerável de trabalho.
+Se você deseja apoiar este projeto, considere fazer uma doação em https://github.com/albertobsd/keyhunt#donations.
 
 
-# Disclaimer
+# Aviso Legal
 
-I made this tool as a generic tool for the Puzzles.
-I recommend to everyone to stay in puzzles
+Eu fiz esta ferramenta como uma ferramenta genérica para os Puzzles.
+Eu recomendo a todos que permaneçam nos puzzles.
 
-Several of users request me to add support for ethereum and minikeys, I did it.
-But again i recommend only use this program for puzzles.
+Vários usuários me solicitaram para adicionar suporte ao Ethereum e minikeys, eu o fiz.
+Mas, novamente, recomendo usar este programa apenas para puzzles.
 
-## For regular users
+## Para usuários regulares
 
-Please read the CHANGELOG.md to see the new changes
+Por favor, leia o CHANGELOG.md para ver as novas alterações.
 
-# Download and build
+# Baixar e compilar
 
-This program was made in a linux environment.
-if you are windows user i strongly recommend to use WSL enviroment on Windows.
-it is available in the Microsoft store
+Este programa foi feito em um ambiente Linux.
+Se você é um usuário de Windows, recomendo fortemente usar o ambiente WSL no Windows.
+Ele está disponível na Microsoft Store.
 
-Please install on your system
+Por favor, instale no seu sistema:
 
 - git
 - build-essential
 
-for legacy version also you are going to need:
+Para a versão legada, você também vai precisar de:
 
 - libssl-dev
 - libgmp-dev
 
-On Debian based systems, run this commands to update your current enviroment
-and install the tools needed to compile it
+Em sistemas baseados em Debian, execute estes comandos para atualizar seu ambiente atual
+e instalar as ferramentas necessárias para compilar
 
 ```
 apt update && apt upgrade
@@ -79,32 +78,31 @@ apt install libssl-dev -y
 apt install libgmp-dev -y
 ```
 
-To clone the repository
+Para clonar o repositório:
 
 ```
 git clone https://github.com/albertobsd/keyhunt.git
 ```
 
-don't forget change to the keyhunt directory (But i'm not here to teach you linux commands)
+não se esqueça de mudar para o diretório keyhunt (Mas eu não estou aqui para ensinar comandos Linux)
 
 ```
 cd keyhunt
 ```
 
-First compile:
+Primeira compilação:
 
 ```
 make
 ```
 
-if you have problems compiling the `main` version you can compile the `legacy` version
+se você tiver problemas ao compilar a versão `main`, você pode compilar a versão `legacy`
 
 ```
 make legacy
 ```
 
-
-and then execute with `-h` to see the help
+e então executar com `-h` para ver a ajuda
 
 ```
 ./keyhunt -h
@@ -112,29 +110,29 @@ and then execute with `-h` to see the help
 
 ## ¡Beta!
 
-This version is still a **beta** version, there are a lot of things that can be fail or improve.
-This version also could have some bugs. please report it.
+Esta versão ainda é uma versão **beta**, há muitas coisas que podem falhar ou melhorar.
+Esta versão também pode ter alguns bugs. por favor, relate-os.
 
-# Modes
+# Modos
 
-Keyhunt can work in diferent ways at different speeds.
+Keyhunt pode trabalhar de diferentes maneiras em diferentes velocidades.
 
-The current availables modes are:
+Os modos disponíveis atualmente são:
 - address
 - rmd160
 - xpoint
 - bsgs
 
-## Experimental modes
+## Modos experimentais
 
 - minikeys
 - pub2rmd
 
-## address mode
+## modo endereço
 
-This is the most basic approach to work, in this mode your text file need to have a list of the publicaddress to be search.
+Esta é a abordagem mais básica para trabalhar, neste modo seu arquivo de texto precisa ter uma lista dos endereços públicos a serem procurados.
 
-Example of address from solved puzzles, this file is already on the repository `tests/1to32.txt`
+Exemplo de endereços de puzzles resolvidos, este arquivo já está no repositório `tests/1to32.txt`
 
 ```
 1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH
@@ -142,15 +140,15 @@ Example of address from solved puzzles, this file is already on the repository `
 ...
 ```
 
-To target that file we need to execute keyhunt with this line
+Para direcionar esse arquivo, precisamos executar o keyhunt com esta linha
 
 `./keyhunt -m address -f tests/1to32.txt -r 1:FFFFFFFF`
 
-output:
+saída:
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode address
-[+] Setting search for btc adddress
+[+] Setting search for btc address
 [+] N = 0x100000000
 [+] Range
 [+] -- from : 0x1
@@ -177,17 +175,17 @@ rmd160 5dedfbf9ea599dd4e3ca6a80b333c472fd0b3f69
 (Output omitted)
 ```
 
-In this mode you can specify to seach only address compressed or uncompressed with `-l compress` or  `-l uncompress`
+Neste modo, você pode especificar para buscar apenas endereços comprimidos ou não comprimidos com `-l compress` ou `-l uncompress`.
 
-Test your luck with the random parameter `-R` againts the puzzle #66
+Tente sua sorte com o parâmetro aleatório `-R` contra o puzzle #66
 
 ```
 ./keyhunt -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
 ```
 
-Please note the change from `-r 1:FFFFFFFF` to `-b 66`, with -b you can specify the bit range
+Observe a mudança de `-r 1:FFFFFFFF` para `-b 66`, com -b você pode especificar o intervalo de bits.
 
-output:
+saída:
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode address
@@ -195,7 +193,7 @@ output:
 [+] Random mode
 [+] Quiet thread output
 [+] Stats output every 10 seconds
-[+] Setting search for btc adddress
+[+] Setting search for btc address
 [+] N = 0x100000000
 [+] Bit Range 66
 [+] -- from : 0x20000000000000000
@@ -207,17 +205,17 @@ output:
 ^C] Total 47634432 keys in 10 seconds: ~4 Mkeys/s (4763443 keys/s)
 ```
 
-### vanity search.
+### busca de vanity.
 
-To search only one vanity address is with `1Good1` or with `1MyKey` use the next command
+Para buscar apenas um endereço de vanity como `1Good1` ou `1MyKey`, use o seguinte comando:
 
-full command
+comando completo
 
 ```
 ./keyhunt -m vanity -l compress -R -b 256 -v 1Good1 -v 1MyKey
 ```
 
-output:
+saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -236,17 +234,18 @@ Base key: a5247120867e8d57b8908b0d962df84a924cba7f684903e2c942574353520a03
 Vanity Private Key: 5adb8edf798172a8476f74f269d207b42862226746ff9c58f69007497c0d7516
 pubkey: 0273267f9764b022bb462b359a12917dbb3568e4e6cd3aa2e846b8c1d9cae0363a
 Address 1Good1mjxXjNqb8TucvKjyCuZfihMZgFcc
+
+
 rmd160 ad63f02cb68254ce12982e5e312bd51e8a239a84
 ```
 
-
-command to search multiple vanity addresses from a file `-f filename.txt`.
+comando para buscar múltiplos endereços de vanity a partir de um arquivo `-f filename.txt`.
 
 ```
 ./keyhunt -m vanity -f ~/main/keyhunt/vanitytargets.txt -l compress -R -b 256 -e -s 10 -q 
 ```
 
-Output:
+Saída:
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode vanity
@@ -264,17 +263,17 @@ Output:
 ^C] Total 58202112 keys in 10 seconds: ~5 Mkeys/s (5820211 keys/s)
 ```
 
-All the vanity address and his privatekeys will be saved in the file `VANITYKEYFOUND.txt` of your current directory
+Todos os endereços de vanity e suas chaves privadas serão salvos no arquivo `VANITYKEYFOUND.txt` do seu diretório atual.
 
 
-## rmd160 mode
+## modo rmd160
 
-rmd stands for RIPE Message Digest (see https://en.wikipedia.org/wiki/RIPEMD )
+rmd significa RIPE Message Digest (veja https://en.wikipedia.org/wiki/RIPEMD)
 
-mode rmd160 work in the same way than address, but the diference is that file need to have hash rmd160 instead of addresses.
+o modo rmd160 funciona da mesma forma que o endereço, mas a diferença é que o arquivo precisa ter hashes rmd160 em vez de endereços.
 
 
-example file `tests/1to32.rmd` :
+exemplo de arquivo `tests/1to32.rmd`:
 
 ```
 751e76e8199196d454941c45d1b3a323f1433bd6
@@ -284,13 +283,13 @@ example file `tests/1to32.rmd` :
 ...
 ```
 
-to target that file you need to execute the next line:
+para direcionar esse arquivo você precisa executar a próxima linha:
 
 ```
 ./keyhunt -m rmd160 -f tests/1to32.rmd -r 1:FFFFFFFF -l compress -s 5
 ```
 
-output:
+saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -317,14 +316,14 @@ rmd160 7dd65592d0ab2fe0d0257d571abf032cd9db93dc
 (Output omitted)
 ```
 
-test your luck with the next file for the puzzle #66
+tente sua sorte com o próximo arquivo para o puzzle #66
 
 
 ```
 ./keyhunt -m rmd160 -f tests/66.rmd -b 66 -l compress -R -q
 ```
 
-Output:
+Saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -344,20 +343,20 @@ Output:
 ^C] Total 70844416 keys in 15 seconds: ~4 Mkeys/s (4722961 keys/s)
 ```
 
-## xpoint mode
+## modo xpoint
 
-This method can target the X value of the publickey in the same way that the tool search for address or rmd160 hash, this tool can search for the X values
+Este método pode direcionar o valor X da chave pública da mesma forma que a ferramenta procura endereços ou hash rmd160, esta ferramenta pode procurar pelos valores X.
 
-The speed for this method is better than the speed for address or rmd160
+A velocidade deste método é melhor do que a velocidade para endereços ou rmd160.
 
-The input file can had one publickey per line compress or uncompress:
+O arquivo de entrada pode ter uma chave pública por linha, comprimida ou não comprimida:
 
-- Publickey Compress (66 hexcharacters)
-- Publickey Uncompress (130 hexcharacters)
+- Chave pública comprimida (66 caracteres hexadecimais)
+- Chave pública não comprimida (130 caracteres hexadecimais)
 
-Example input file:
+Exemplo de arquivo de entrada:
 
-A few substracted values from puzzle *40*
+Alguns valores subtraídos do puzzle *40*
 
 ```
 034eee474fe724cb631d19f24934e88016e4ef2aee80d086621d87d7f6066ff860 # - 453856235784
@@ -372,11 +371,11 @@ A few substracted values from puzzle *40*
 ```
 
 
-Now you can use keyhunt against some thousand values of the puzzle 40:
+Agora você pode usar keyhunt contra alguns milhares de valores do puzzle 40:
 
 ```./keyhunt -m xpoint -f tests/substracted40.txt -n 65536 -t 4 -b 40```
 
-Output:
+Saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -395,23 +394,24 @@ Hit! Private Key: 800258a2ce
 pubkey: 0474241b684e7c31e7933510b510aa14de9ac88ec3635bdd35a3bcf1d16da210be7ad946c9b185433fff3a7824ee140b15789d5f12d60cd2814154b0f8f1a4308e
 Address 1CMg4mukBGVvid4ocTx5x5LEuCatKoHQRB
 rmd160 7c92500fa9d2ecbca5bdd61bb6a14a249669bae4
-
 ```
 
-After the hit we need to search the substracted index and make a simple math operation to get the real privatek:
+Depois do acerto, precisamos procurar o índice subtraído e fazer uma operação matemática simples para obter a chave privada real:
 
 ```
-0274241b684e7c31e7933510b510aa14de9ac88ec3635bdd35a3bcf1d16da210be # + 453856235784
+0274241b684e7c31e7933510b510aa14de9ac88ec3635bdd35a3bcf1d16da
+
+210be # + 453856235784
 ```
-The Operation is `800258a2ce` hex (+/-) in this case + `453856235784` decimal equals to `E9AE4933D6`
+A operação é `800258a2ce` hex (+/-) neste caso + `453856235784` decimal que é igual a `E9AE4933D6`.
 
-This is an easy example, I been trying the puzzle 120 with more than 500 millions of substracted keys and no luck.
+Este é um exemplo fácil, eu tentei o puzzle 120 com mais de 500 milhões de chaves subtraídas e sem sorte.
 
-Test you luck with the puzzle 120 with xpoint:
+Teste sua sorte com o puzzle 120 com xpoint:
 
 ```./keyhunt -m xpoint -f tests/120.txt -t 4 -b 125 -R -q```
 
-Output:
+Saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -430,54 +430,53 @@ Output:
 ^C] Total 462885888 keys in 30 seconds: ~15 Mkeys/s (15429529 keys/s)
 ```
 
-## Endomorphism
+## Endomorfismo
 
-To enable endomorphism use `-e`
+Para habilitar o endomorfismo use `-e`.
 
-endomorphism is only enabled for `address`, `rdm160` , `vanity` and `xpoint`
+O endomorfismo é habilitado apenas para `address`, `rdm160`, `vanity` e `xpoint`.
 
+Mas o que diabos é `Endomorfismo`?
 
-But what the heck is `Endomorphism`?
+Em poucas palavras, para curvas elípticas, um endomorfismo é uma função que mapeia pontos na curva para outros pontos na mesma curva.
 
-In few words for elliptic curves, an endomorphism is a function that maps points on the curve to other points on the same curve.
+Um tipo de Endomorfismo é a negação do ponto, por exemplo, a chave privada do puzzle 64
 
-One kind of Endomorphism is the Point negation by example the privatekey from puzzle 64 
+000000000000000000000000000000000000000000000000f7051f27b09112d4 chave pública 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
+se negarmos essa chave privada ou chave pública, obtemos:
 
-000000000000000000000000000000000000000000000000f7051f27b09112d4 publickey 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
-if we negated that private or publickey we get:
+fffffffffffffffffffffffffffffffebaaedce6af48a03ac8cd3f651fa52e6d chave pública 02100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
 
-fffffffffffffffffffffffffffffffebaaedce6af48a03ac8cd3f651fa52e6d publickey 02100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
+Mas se negarmos este último valor, obtemos novamente o primeiro valor.
 
-But if we negated this last value we get again the first value.
-
-There are some special values lambda y beta
+Existem alguns valores especiais lambda e beta
 
 ```
 lambda = 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 beta = 0x7ae96a2b657c07106e64479eac3434e99cf0497512f58995c1396c28719501ee
 ```
 
-For every privatekey K and its Point Q where Q = GK 
+Para cada chave privada K e seu Ponto Q onde Q = GK
 
 Q = (x,y)
 
-We can multuply Q by lambda example:
+Podemos multiplicar Q por lambda, exemplo:
 
 ```
 Q * lambda = (x * beta mod p , y)
-Q*lambda is a Scalar Multiplication
-x*beta is just a Multiplication (Very fast
+Q*lambda é uma Multiplicação Escalar
+x*beta é apenas uma Multiplicação (Muito rápido)
 ```
 
-p is 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
+p é 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
 
-Example puzzle 64
+Exemplo do puzzle 64
 
-0x000000000000000000000000000000000000000000000000f7051f27b09112d4 publickey 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
-0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a publickey 03792bfa55bf659967951b21060c05c250cd261ec3ea02704815bfb1c5ccc800fd
-0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 publickey 0376cdf3e4f29b709454a95ba0fc4242edf5f5685be94b6b09d36bf91280da5de5
+0x000000000000000000000000000000000000000000000000f7051f27b09112d4 chave pública 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
+0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a chave pública 03792bfa55bf659967951b21060c05c250cd261ec3ea02704815bfb1c5ccc800fd
+0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 chave pública 0376cdf3e4f29b709454a95ba0fc4242edf5f5685be94b6b09d36bf91280da5de5
 
-proof
+prova
 
 ```
 ~/ecctools/modmath 0xf7051f27b09112d4 x 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
@@ -485,39 +484,37 @@ Result: 0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a
 
 ~/ecctools/modmath 0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a x 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 Result: 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133
-
 ```
 
-but if we multiply 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 again by lambda
+mas se multiplicarmos 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 novamente por lambda
 
 ```
 ~/ecctools/modmath 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 x 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 Result: 0xf7051f27b09112d4
-
 ```
 
-What the heck?? We go back to the first key, wow!!
+O que diabos?? Voltamos à primeira chave, uau!!
 
-So for each key that we compute, we can get easy 6 values more This values Are:
+Portanto, para cada chave que calculamos, podemos obter facilmente 6 valores mais. Esses valores são:
 
 ```
-Original Point, Original Point negated
-Original Point * lambda,  Original Point * lambda negated
-Original Point * lambda^2,  Original Point * lambda^2 negated
+Ponto original, Ponto original negado
+Ponto original * lambda, Ponto original * lambda negado
+Ponto original * lambda^2, Ponto original * lambda^2 negado
 ```
 
-Obiously we need to do the operations with the X value multiplied by *beta* becasue it is more faster and we are going to get the same result
+Obviamente, precisamos fazer as operações com o valor X multiplicado por *beta* porque é mais rápido e vamos obter o mesmo resultado.
 
-*Endomorphism don't work for puzzles because 5 of those 6 keys are outside of the range*
+*Endomorfismo não funciona para puzzles porque 5 dessas 6 chaves estão fora do intervalo*.
 
-I added endomorphism to speed up the vanity search process, but i extended it for all other methods that i mentioned before
+Eu adicionei endomorfismo para acelerar o processo de busca de vanity, mas o estendi para todos os outros métodos mencionados antes.
 
 
-## pub2rmd mode
+## modo pub2rmd
 
-This method is made to try to get the puzzles publickey key it works a little more faster because it skip the EC Operations
+Este método foi feito para tentar obter a chave pública dos puzzles, funciona um pouco mais rápido porque pula as operações EC.
 
-The input file need to have the hash RMD160 of the address without publickey leaked:
+O arquivo de entrada precisa ter o hash RMD160 do endereço sem chave pública vazada:
 
 ```
 3ee4133d991f52fdf6a25c9834e0745ac74248a4
@@ -538,7 +535,9 @@ bf7413e8df4e7a34ce9dc13e2f2648783ec54adb
 24cef184714bbd030833904f5265c9c3e12a95a2
 7c99ce73e19f9fbfcce4825ae88261e2b0b0b040
 c60111ed3d63b49665747b0e31eb382da5193535
-fbc708d671c03e26661b9c08f77598a529858b5e
+fbc708d671c03e26661b9c
+
+08f77598a529858b5e
 38a968fdfb457654c51bcfc4f9174d6ee487bb41
 5c3862203d1e44ab3af441503e22db97b1c5097e
 9978f61b92d16c5f1a463a0995df70da1f7a7d2a
@@ -551,11 +550,11 @@ c6927a00970d0165327d0a6db7950f05720c295c
 c01bf430a97cbcdaedddba87ef4ea21c456cebdb
 ```
 
-To target that file you need to do:
+Para direcionar esse arquivo, você precisa fazer:
 
 ```./keyhunt -m pub2rmd -f tests/puzzleswopublickey.txt -t 6 -q```
 
-Output:
+Saída:
 
 ```
 [+] Version 0.2.211007 Chocolate ¡Beta!
@@ -571,43 +570,43 @@ Output:
 [+] Total 207618048 keys in 60 seconds: ~3 Mkeys/s (3460300 keys/s)
 ```
 
-You can let it run for a while together with others scripts, if you get one of those publickeys now you can target it with a better method like bsgs or another tools like kangaroo
+Você pode deixá-lo rodar por um tempo junto com outros scripts, se você conseguir uma dessas chaves públicas agora, você pode direcioná-la com um método melhor, como bsgs ou outras ferramentas, como kangaroo.
 
 
-## bsgs mode (baby step giant step)
+## modo bsgs (baby step giant step)
 
-Keyhunt implement the BSGS algorithm to search privatekeys for a known public key.
+Keyhunt implementa o algoritmo BSGS para buscar chaves privadas para uma chave pública conhecida.
 
-The input file need to have a list of publickeys compress or uncompress those publickey can be mixed in the same file, one public key per line and any other word followed by an space is ignored example of the file:
+O arquivo de entrada precisa ter uma lista de chaves públicas, comprimidas ou não comprimidas, essas chaves públicas podem ser misturadas no mesmo arquivo, uma chave pública por linha e qualquer outra palavra seguida de um espaço é ignorada. Exemplo do arquivo:
 
 ```
 043ffa1cc011a8d23dec502c7656fb3f93dbe4c61f91fd443ba444b4ec2dd8e6f0406c36edf3d8a0dfaa7b8f309b8f1276a5c04131762c23594f130a023742bdde # 0000000000000000000000000000000000800000000000000000100000000000
 046534b9e9d56624f5850198f6ac462f482fec8a60262728ee79a91cac1d60f8d6a92d5131a20f78e26726a63d212158b20b14c3025ebb9968c890c4bab90bfc69 # 0000000000000000000000000000000000800000000000000000200000000000
 ```
 
-This example contains 2 publickeys followed by his privatekey just to test the correct behavior of the application.
+Este exemplo contém 2 chaves públicas seguidas de sua chave privada apenas para testar o comportamento correto da aplicação.
 
-*Don't load more than 100 or 1000 publickeys* if you lad more than it will take a long long time in update the speed counter and the speed will be very low.
+*Não carregue mais de 100 ou 1000 chaves públicas* se você carregar mais do que isso, levará muito tempo para atualizar o contador de velocidade e a velocidade será muito baixa.
 
-btw any word followed by and space after the publickey is ignored the file can be only the publickeys:
+Aliás, qualquer palavra seguida de um espaço após a chave pública é ignorada, o arquivo pode ser apenas as chaves públicas:
 
 ```
 043ffa1cc011a8d23dec502c7656fb3f93dbe4c61f91fd443ba444b4ec2dd8e6f0406c36edf3d8a0dfaa7b8f309b8f1276a5c04131762c23594f130a023742bdde
 046534b9e9d56624f5850198f6ac462f482fec8a60262728ee79a91cac1d60f8d6a92d5131a20f78e26726a63d212158b20b14c3025ebb9968c890c4bab90bfc69
 ```
 
-### File creation
+### Criação de Arquivo
 
-the bsgs mode `-m bsgs` now can create automatically the files needed to speed up the initial load process of keyhunt this is the bloom filters creation and the bp table creation.
+o modo bsgs `-m bsgs` agora pode criar automaticamente os arquivos necessários para acelerar o processo de carregamento inicial do keyhunt, isso inclui a criação de filtros bloom e da tabela bp.
 
-To request to keyhunt to create those files automatically use `-S` Capital S for SAVE and READ files.
-The 3 files needed for keyhunt can vary from size depending of your values of `-n` and `-k` , so make your test and stick to one combination of (n,k) values or you can end with hundreds of unnesesary files.
+Para solicitar ao keyhunt a criação desses arquivos automaticamente, use `-S` (S maiúsculo) para SALVAR e LER arquivos.
+Os 3 arquivos necessários para o keyhunt podem variar de tamanho dependendo dos seus valores de `-n` e `-k`, então faça seu teste e fique com uma combinação de valores (n, k) ou você pode acabar com centenas de arquivos desnecessários.
 
-The 3 Files size are the same amount of memory used in runtime.
+O tamanho dos 3 arquivos é igual à quantidade de memória usada em tempo de execução.
 
-The files are created if they don't exist when you run the program the first time.
+Os arquivos são criados se não existirem quando você executar o programa pela primeira vez.
 
-example of file creation:
+exemplo de criação de arquivo:
 
 ```
 ./keyhunt -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
@@ -636,7 +635,7 @@ example of file creation:
 ^C] Total 457396837154816 keys in 30 seconds: ~15 Tkeys/s (15246561238493 keys/s)
 ```
 
-When we run the program for second time the files are now readed and the bP Points processing is omitted:
+Quando executamos o programa pela segunda vez, os arquivos agora são lidos e o processamento dos pontos bP é omitido:
 
 ```
 ./keyhunt -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
@@ -662,21 +661,23 @@ When we run the program for second time the files are now readed and the bP Poin
 ^C
 ```
 
-All the next examples were made with the `-S` option I just ommit that part of the output to avoid confutions use `-S` if you want, but remember with a great `-n` there must also come great files
+Todos os próximos exemplos foram feitos com a opção `-S`. Eu apenas omito essa parte da saída para evitar confusões. Use `-S` se desejar, mas lembre-se, com um grande `-n` devem vir grandes arquivos.
 
-### Examples
+### Exemplos
 
-To try to find those privatekey this is the line of execution:
-
-```
-time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
-```
-
-Output:
+Para tentar encontrar essas chaves privadas, esta é a linha de execução:
 
 ```
 time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
-[+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
+```
+
+Saída:
+
+```
+time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
+[+] Version 0
+
+.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode BSGS secuential
 [+] Opening file tests/test120.txt
 [+] Added 2 points from file
@@ -703,20 +704,20 @@ user    0m3.619s
 sys     0m0.000s
 ```
 
-Test the puzzle 120 with the next publickey:
+Teste o puzzle 120 com a próxima chave pública:
 
 ```
 0233709eb11e0d4439a729f21c2c443dedb727528229713f0065721ba8fa46f00e
 ```
 
-Line of execution in random mode `-R` or -B random
+Linha de execução em modo aleatório `-R` ou -B random
 
 ```./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R```
 
 ```./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -B random```
 
 
-Example Output:
+Exemplo de Saída:
 
 ```
 [+] Version 0.2.230507 Satoshi Quest, developed by AlbertoBSD
@@ -740,18 +741,18 @@ Example Output:
 [+] Total 158329674399744 keys in 10 seconds: ~15 Tkeys/s (15832967439974 keys/s)
 ```
 
-Good speed no? 15 Terakeys/s for one single thread
+Boa velocidade, não? 15 Terakeys/s para um único thread.
 
 **^C] Total 158329674399744 keys in 10 seconds: ~15 Tkeys/s (15832967439974 keys/s)**
 
-We can speed up our process selecting a bigger K value `-k value` btw the n value is the total length of item tested in the radom range, a bigger k value means more ram to be use:
+Podemos acelerar nosso processo selecionando um valor K maior `-k valor`, btw o valor n é o comprimento total do item testado no intervalo aleatório, um valor k maior significa mais RAM para ser usada:
 
-Example:
+Exemplo:
 ```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
 ```
 
-Output:
+Saída:
 
 ```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
@@ -779,18 +780,18 @@ Output:
 ^C] Thread 0x1bbb290563ffcf38724482a45f2bed04  ~256 Tkeys/s (256259265658880 keys/s)
 ```
 
-**~256 Terakeys/s for one single thread**
+**~256 Terakeys/s para um único thread**
 
-Note the value of N `0xfffff000000` with k = 20 this mean that the N value is less than the default value `0x100000000000` that is because k is not a 2^X number
+Observe o valor de N `0xfffff000000` com k = 20, isso significa que o valor N é menor que o valor padrão `0x100000000000`, isso porque k não é um número 2^X.
 
-if you want to more Speed use a bigger -k value like 128, it will use some 2 GB of RAM
+se você quiser mais velocidade, use um valor k maior, como 128, isso usará cerca de 2 GB de RAM.
 
 
 ```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 128 -S
 ```
 
-Output
+Saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -814,17 +815,17 @@ Output
 ^C] Thread 0x1d0e05e7aaf9eca861fe0b2245579241   ~1 Pkeys/s (1292439268063095 keys/s)
 ```
 
-**~1.2 Pkeys/s for one single thread**
+**~1.2 Pkeys/s para um único thread**
 
-OK at this point maybe you want to use ALL your RAM memory to solve the puzzle 125, just a bigger -k value
+OK, neste ponto, talvez você queira usar TODA a sua memória RAM para resolver o puzzle 125, apenas um valor k maior.
 
-I already tested it with some **8 GB ** used with `-k 512` and I get **~46 Petakeys/s per thread.**
+Eu já testei com cerca de **8 GB** usados com `-k 512` e obtive **~46 Petakeys/s por thread**.
 
-with **8** threads
+com **8** threads
 
 `./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 512 -q -t 8 -s 10 -S`
 
-Output:
+Saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -837,7 +838,9 @@ Output:
 [+] Opening file tests/125.txt
 [+] Added 1 points from file
 [+] Bit Range 125
-[+] -- from : 0x10000000000000000000000000000000
+[+] --
+
+ from : 0x10000000000000000000000000000000
 [+] -- to   : 0x20000000000000000000000000000000
 [+] N = 0x100000000000
 [+] Bloom filter for 2147483648 elements : 7361.33 MB
@@ -850,15 +853,15 @@ Output:
 [+] Reading bloom filter from file keyhunt_bsgs_7_2097152.blm .... Done!
 ^C] Total 2126103644397895680 keys in 110 seconds: ~19 Pkeys/s (19328214949071778 keys/s)
 ```
-I get ~19 Petakeys/s total
+Eu consegui ~19 Petakeys/s no total.
 
-Warning: the default n value have a maximun K of `4096` if that value is exceed the program can have an unknow behavior or suboptimal speed.
-If you want to use a bigger K I recomend use a bigger N value `-n 0x400000000000` and half your K value.
+Aviso: o valor n padrão tem um valor máximo de K de `4096`, se esse valor for excedido, o programa pode ter um comportamento desconhecido ou velocidade subótima.
+Se você quiser usar um K maior, recomendo usar um valor N maior `-n 0x400000000000` e diminuir pela metade o seu valor K.
 
-Just as comparation with the BSGS program of JLP
-Same publickeys and ranged used by his sample:
+Apenas para comparação com o programa BSGS de JLP
+Mesmas chaves públicas e intervalo usados pelo seu exemplo:
 
-publickeys:
+chaves públicas:
 ```
 0459A3BFDAD718C9D3FAC7C187F1139F0815AC5D923910D516E186AFDA28B221DC994327554CED887AAE5D211A2407CDD025CFC3779ECB9C9D7F2F1A1DDF3E9FF8
 04A50FBBB20757CC0E9C41C49DD9DF261646EE7936272F3F68C740C9DA50D42BCD3E48440249D6BC78BC928AA52B1921E9690EBA823CBC7F3AF54B3707E6A73F34
@@ -878,38 +881,38 @@ publickeys:
 0455B95BEF84A6045A505D015EF15E136E0A31CC2AA00FA4BCA62E5DF215EE981B3B4D6BCE33718DC6CF59F28B550648D7E8B2796AC36F25FF0C01F8BC42A16FD9
 ```
 
-set range
+definir intervalo
 
 ```
 -r 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000:49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5effffffffffffffff
 ```
 
-the n value to get the same baby step table:
+o valor n para obter a mesma tabela de baby step:
 
 
 ```
 -n 1152921504606846976
 ```
 
-number of threads
+número de threads
 
 ```
 -t 6
 ```
 
-Hidding the speed:
+Ocultando a velocidade:
 
 ```
 -s 0
 ```
 
-command:
+comando:
 
 ```
 time ./keyhunt -m bsgs -t 6 -f tests/in.txt -r 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000:49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5effffffffffffffff -n 0x1000000000000000 -M -s 0
 ```
 
-Output:
+Saída:
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Threads : 6
@@ -925,6 +928,8 @@ Output:
 [+] Bloom filter for 1073741824 elements : 3680.00 MB
 [+] Bloom filter for 53687092 elements : 184.03 MB
 [+] Allocating 819.00 MB for 53687092 bP Points
+
+
 [+] processing 1073741824/1073741824 bP points : 100%
 [+] Thread 0x49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000
 [+] Thread 0x49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e2000000000000000
@@ -961,7 +966,9 @@ Output:
 [+] Thread Key found privkey 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e79d808cab1decf8d
 [+] Publickey 043bd0330d7381917f8860f1949acbccfdc7863422eee2b6db7edd551850196687528b6d2bc0aa7a5855d168b26c6baf9ddcd04b585d42c7b9913f60421716d37a
 [+] Thread Key found privkey 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e7c43b8e079ae7278
-[+] Publickey 0456b468963752924dbf56112633dc57f07c512e3671a16cd7375c58469164599d1e04011d3e9004466c814b144a9bcb7e47d5baca1b90da0c4752603781bf5873
+[+] Publickey 0456b468963752924dbf56112633dc57f07c512e3671a16cd7375c58469164599d1e04011d3e9004466c814b144a9bcb7e47d5baca1b90da0c4752603781
+
+bf5873
 [+] Thread Key found privkey 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e8d63ef128ef66b42
 [+] Publickey 04d5be7c653773cee06a238020e953cfcd0f22be2d045c6e5b4388a3f11b4586cbb4b177dffd111f6a15a453009b568e95798b0227b60d8beac98af671f31b0e2b
 [+] Thread Key found privkey 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e7ad38337c7f173c7
@@ -981,9 +988,9 @@ user    973m8.387s
 sys     0m26.803s
 ```
 
-Amount of RAM used ~4.5 GB, time to solve the sixteen public keys in the range of 64 bits key-space: 164 min (~2.7 hrs) using 6 threads
+Quantidade de RAM usada ~4,5 GB, tempo para resolver as dezesseis chaves públicas no intervalo de chave de 64 bits: 164 min (~2,7 hrs) usando 6 threads.
 
-if we run the same command with `-n 0x1000000000000000 -k 4 -t 6` it use ~18 GB or RAM and solve the same keys in 60 minutes
+se executarmos o mesmo comando com `-n 0x1000000000000000 -k 4 -t 6`, ele usa ~18 GB de RAM e resolve as mesmas chaves em 60 minutos.
 
 ```
 All points were found
@@ -993,17 +1000,17 @@ user    329m29.836s
 sys     0m22.752s
 ```
 
-There are several variations to play with the values `-n` and `-k` but there are some minimal values required, n can not be less than 1048576 (2^20)
+Existem várias variações para brincar com os valores `-n` e `-k`, mas existem alguns valores mínimos necessários, n não pode ser menor que 1048576 (2^20).
 
-To get optimal performance the k values need to be base 2^x values, this is 1,2,4,8,16,32 ... 
+Para obter um desempenho ideal, os valores de k precisam ser valores base 2^x, isso é 1,2,4,8,16,32...
 
-### Valid n and maximun k values for specific 
+### Valores válidos de n e valores máximos de k para específico
 
 ```
 +------+----------------------+-------------+
-| bits |  n in hexadecimal    | k max value |
+| bits |  n em hexadecimal    | valor max k |
 +------+----------------------+-------------+
-|   20 |             0x100000 | 1 (default) |
+|   20 |             0x100000 | 1 (padrão)  |
 |   22 |             0x400000 | 2           |
 |   24 |            0x1000000 | 4           |
 |   26 |            0x4000000 | 8           |
@@ -1028,12 +1035,12 @@ To get optimal performance the k values need to be base 2^x values, this is 1,2,
 |   64 |  0x10000000000000000 | 4194304     |
 +------+----------------------+-------------+
 ```
- 
-**If you exceed the max value of K the program can have a unknow behavior, the program can have a suboptimal performance, or in the wrong cases you can missing some hits and have an incorrect SPEED.**
 
-Note for user that want use it with SWAP memory. IT DOESN'T WORK with Swap Memory was made to small chucks of memory also is slowly.   
+**Se você exceder o valor máximo de K, o programa pode ter um comportamento desconhecido, o programa pode ter um desempenho subótimo ou, nos casos errados, você pode perder alguns acertos e ter uma VELOCIDADE incorreta.**
 
-### What values use according to my current RAM:
+Nota para o usuário que deseja usá-lo com memória SWAP. NÃO FUNCIONA com memória Swap, foi feito para pequenos pedaços de memória, além de ser lento.
+
+### Quais valores usar de acordo com minha RAM atual:
 
 2 G
 -k 128
@@ -1075,20 +1082,20 @@ Note for user that want use it with SWAP memory. IT DOESN'T WORK with Swap Memor
 -n 0x10000000000000 -k 32768
 
 
-### Testing puzzle 63 bits
+### Testando o puzzle 63 bits
 
-Publickey:
+Chave pública:
 
 ```
 0365ec2994b8cc0a20d40dd69edfe55ca32a54bcbbaa6b0ddcff36049301a54579
 ```
 
-Command
+Comando
 ```
 time ./keyhunt -m bsgs -t 8 -f tests/63.pub -k 512 -s 0 -S -b 63
 ```
 
-output:
+saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -1109,7 +1116,9 @@ output:
 [+] Reading bloom filter from file keyhunt_bsgs_4_2147483648.blm .... Done!
 [+] Reading bloom filter from file keyhunt_bsgs_6_67108864.blm .... Done!
 [+] Reading bP Table from file keyhunt_bsgs_2_2097152.tbl .... Done!
-[+] Reading bloom filter from file keyhunt_bsgs_7_2097152.blm .... Done!
+[+] Reading bloom filter from
+
+ file keyhunt_bsgs_7_2097152.blm .... Done!
 [+] Thread Key found privkey 7cce5efdaccf6808
 [+] Publickey 0365ec2994b8cc0a20d40dd69edfe55ca32a54bcbbaa6b0ddcff36049301a54579
 All points were found00000000
@@ -1120,68 +1129,68 @@ sys     0m20.061s
 
 ```
 
-## Is my speed real?
+## Minha velocidade é real?
 
-Since this is still a beta version we can have some doubt about the speed showed in the bsgs mode.
+Como esta ainda é uma versão beta, podemos ter algumas dúvidas sobre a velocidade mostrada no modo bsgs.
 
-To check this  i prepare a set of test publickeys to be found at some specific time according to your speed.
+Para verificar isso, preparei um conjunto de chaves públicas de teste para serem encontradas em algum momento específico de acordo com sua velocidade.
 
-With  1 Petakeys/s the publickey will be found in 2 minutes:
-Privatekey: 8000000000000001aa535d3d0c0000
-Publickey : 02af4535880d694d660031a161c53a6889c45d2de513454858e94739f9c790768b
+Com 1 Petakeys/s, a chave pública será encontrada em 2 minutos:
+Chave privada: 8000000000000001aa535d3d0c0000
+Chave pública: 02af4535880d694d660031a161c53a6889c45d2de513454858e94739f9c790768b
 
-With 10 Petakeys/s the publickey will be found in 2 minutes:
-Privatekey: 8000000000000010a741a462780000
-Publickey : 025deee1657cd5d363cff23ec1b14781e504cbb6292c273e515d73f98065131d40
+Com 10 Petakeys/s, a chave pública será encontrada em 2 minutos:
+Chave privada: 8000000000000010a741a462780000
+Chave pública: 025deee1657cd5d363cff23ec1b14781e504cbb6292c273e515d73f98065131d40
 
-With 50 Petakeys/s the publickey will be found in 2 minutes:
-Privatekey: 8000000000000053444835ec580000
-Publickey : 03c13e9c6e5cbe2ac06817e4d8fd0a3e836f1a121aab91bb67ef44747b25c7d791
+Com 50 Petakeys/s, a chave pública será encontrada em 2 minutos:
+Chave privada: 8000000000000053444835ec580000
+Chave pública: 03c13e9c6e5cbe2ac06817e4d8fd0a3e836f1a121aab91bb67ef44747b25c7d791
 
-With  1 Exakey/s the publickey will be found in 2 minutes:
-Privatekey: 800000000000068155a43676e00000
-Publickey : 022b6a74badcc4c3d8fab7d01ddc1854b9d8f262172789b2aa1bb7fd42cc1b2817
+Com 1 Exakey/s, a chave pública será encontrada em 2 minutos:
+Chave privada: 800000000000068155a43676e00000
+Chave pública: 022b6a74badcc4c3d8fab7d01ddc1854b9d8f262172789b2aa1bb7fd42cc1b2817
 
-With  5 Exakeys/s the publickey will be found in 2 minutes
-Privatekey: 8000000000002086ac351052600000
-Publickey : 024cf9e44f808e7b0bbb12a57ff63e3a8407cba1816f5e31e815d33d70e4a95a7f
+Com 5 Exakeys/s, a chave pública será encontrada em 2 minutos:
+Chave privada: 8000000000002086ac351052600000
+Chave pública: 024cf9e44f808e7b0bbb12a57ff63e3a8407cba1816f5e31e815d33d70e4a95a7f
 
-With 10 Exakeys/s the publickey will be found in 2 minutes
-Privatekey: 800000000000410d586a20a4c00000
-Publickey : 02ee0cf78d13b4aae9c8777a0f93dff7f5be3855bd2c0f85370f861c69bb5b533a
+Com 10 Exakeys/s, a chave pública será encontrada em 2 minutos:
+Chave privada: 800000000000410d586a20a4c00000
+Chave pública: 02ee0cf78d13b4aae9c8777a0f93dff7f5be3855bd2c0f85370f861c69bb5b533a
 
-Select one publickey that fit to your current speed save it in a file `testpublickey.txt` and test it with:
+Selecione uma chave pública que se ajuste à sua velocidade atual, salve-a em um arquivo `testpublickey.txt` e teste com:
 
 ```
 ./keyhunt -m bsgs -f testpublickey.txt -b 120 -q
 ```
 
-Change the values of k, n and t
+Altere os valores de k, n e t.
 
 
-The publickeys should be found in some 2 minutes after the load of the files
+As chaves públicas devem ser encontradas em cerca de 2 minutos após o carregamento dos arquivos.
 
-Change your n or k values according to your current memory and remember not exceed the k value of each N please check the table https://github.com/albertobsd/keyhunt#valid-n-and-k-values
-
-
-## minikeys Mode
-
-This mode is some experimental.
-
-For the moment only Minikeys of 22 characters are available
-
-The minikey are generated from a 16 byte buffer using the base58 encode funtion using the bitcoin  string `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz` any sugestion please let me know.
-
-The input file can be an addresses or rmd hashes list of the target keys
+Altere seus valores de n ou k de acordo com sua memória atual e lembre-se de não exceder o valor de k de cada N, por favor, verifique a tabela https://github.com/albertobsd/keyhunt#valid-n-and-k-values
 
 
-Command example:
+## Modo minikeys
+
+Este modo é experimental.
+
+Por enquanto, apenas Minikeys de 22 caracteres estão disponíveis.
+
+O minikey é gerado a partir de um buffer de 16 bytes usando a função de codificação base58, utilizando a string bitcoin `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`. Qualquer sugestão, por favor, me avise.
+
+O arquivo de entrada pode ser uma lista de endereços ou hashes rmd das chaves de destino.
+
+
+Exemplo de comando:
 
 ```
 ./keyhunt -m minikeys -f tests/minikeys.txt -C SG64GZqySYwBm9KxE1wJ28 -n 0x10000
 ```
 
-Output:
+Saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -1200,7 +1209,7 @@ address: 15azScMmHvFPAQfQafrKr48E9MqRRXSnVv
 ^C
 ```
 
-random minikeys command
+comando minikeys aleatório
 
 ```
 ./keyhunt -m minikeys -f tests/minikeys.txt -n 0x10000 -q -R
@@ -1223,19 +1232,19 @@ random minikeys command
 
 # Ethereum
 
-Finally ethereum address are supported, for ethereum there are no modes exect for address.
+Finalmente, endereços ethereum são suportados, para ethereum não há modos, exceto para endereço.
 
-if you have publickeys for ethereum you can use xpoint or bsgs mode.
+se você tiver chaves públicas para ethereum, pode usar o modo xpoint ou bsgs.
 
-to test the functionality of ethereum you can use the sample file `tests/1to32.eth`
+para testar a funcionalidade do ethereum, você pode usar o arquivo de amostra `tests/1to32.eth`
 
-command: 
+comando: 
 
 ```
 ./keyhunt -c eth -f tests/1to32.eth -r 1:100000000 -M
 ```
 
-output:
+saída:
 
 ```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -1265,72 +1274,68 @@ address: 0xf1f6619b38a98d6de0800f1defc0a6399eb6d30c
 ....
 ```
 
-## Speeds
+## Velocidades
 
-I already explain the speed for BSGS
+Eu já expliquei a velocidade para BSGS.
 
-But since there is new updates for other modes I want to clarify it.
+Mas como há novas atualizações para outros modos, quero esclarecer.
 
-For the modes `address`, `rmd160`, `xpoint` and `vanity`
+Para os modos `address`, `rmd160`, `xpoint` e `vanity`.
 
-Each thread works in groups of 1024 keys, so every time that one inner-cycle 
-of each thread is finished the code update its own coutner in 1
+Cada thread trabalha em grupos de 1024 chaves, então, toda vez que um ciclo interno de cada thread é concluído, o código atualiza seu próprio contador em 1.
 
 ```
 steps[thread_number]++;
 ```
 
-So every step represent 1024 keys scanned.
+Portanto, cada passo representa 1024 chaves escaneadas.
 
-if you enabled endomorphism, the total steps are multiplied by 6 for modes `address`, `rmd160` and `vanity`.
-Becuase with endomorphism we checking  efectively 6 different keys every step
- 
-For `xpoint` mode plus endomorphism the number is only is multiplied by 3 only becasue we only care
-about the X value and we don't need the negated values ( mirror Y axis)
+se você habilitar endomorfismo, os passos totais são multiplicados por 6 para os modos `address`, `rmd160` e `vanity`.
+Porque com endomorfismo estamos verificando efetivamente 6 chaves diferentes a cada passo.
 
-Special case for `compress` search of the modes`address`, `rmd160` and `vanity` 
-WITHOUT `endomorphism` enabled, for this conditions the speed is multipied by 2 
-because we are checking efectively 2 keys the program calculate one X value and 
-it is checking both prefixes `02 + X value` and `03 + X value`, this is NOT optional
-Y try to do it without this behavior but in that case the speed is worse
+Para o modo `xpoint` mais endomorfismo, o número é multiplicado por 3 apenas porque só nos import
 
-This is important because if you targeting an specific range with `compress` and WITHOUT endomorphism by examples puzzles
- the efective speed is half of the showed speed by the program
-But if you are targeting all the curve then the showed speed is correct.
+amos com o valor X e não precisamos dos valores negados (espelho do eixo Y).
+
+Caso especial para a busca `compress` dos modos `address`, `rmd160` e `vanity` SEM endomorfismo habilitado, para essas condições a velocidade é multiplicada por 2, porque estamos verificando efetivamente 2 chaves. O programa calcula um valor X e está verificando ambos os prefixos `02 + valor X` e `03 + valor X`, isso NÃO é opcional.
+Tentei fazer sem esse comportamento, mas nesse caso a velocidade é pior.
+
+Isso é importante porque, se você estiver direcionando um intervalo específico com `compress` e SEM endomorfismo, por exemplo, puzzles, a velocidade efetiva é metade da velocidade mostrada pelo programa.
+Mas se você estiver direcionando toda a curva, então a velocidade mostrada está correta.
 
 ## FAQ
 
-- Where the privatekeys will be saved?
-R: In a file called `KEYFOUNDKEYFOUND.txt`
+- Onde as chaves privadas serão salvas?
+R: Em um arquivo chamado `KEYFOUNDKEYFOUND.txt`
 
-- Can I save the bloomfilter and table to speed up the process?
-R: Yes use only `-S` always that you run the program it works for:
-`bsgs`, `address`, `rmd160`, `minikeys`, `xpoint` it don't work for `vanity`
-The files will be generated automatically in the current directory
+- Posso salvar o bloomfilter e a tabela para acelerar o processo?
+R: Sim, use apenas `-S` sempre que você executar o programa, funciona para:
+`bsgs`, `address`, `rmd160`, `minikeys`, `xpoint`, não funciona para `vanity`.
+Os arquivos serão gerados automaticamente no diretório atual.
 
-- Why the speed for bsgs say 0 keys/s
-R: this was asked here https://github.com/albertobsd/keyhunt/issues/69 and 
-here https://github.com/albertobsd/keyhunt/issues/108 and also others in telegram
+- Por que a velocidade para bsgs diz 0 keys/s?
+R: Isso foi perguntado aqui https://github.com/albertobsd/keyhunt/issues/69 e 
+aqui https://github.com/albertobsd/keyhunt/issues/108 e também outros no telegram.
 
-Please check the video that i made to answer that https://youtu.be/MVby8mYNxbI
+Por favor, veja o vídeo que fiz para responder isso https://youtu.be/MVby8mYNxbI
 
-- Is available for Windows?
-R: It can be compiled with mingw, but i strongly recomend WSL with Ubuntu for windows 10
+- Está disponível para Windows?
+R: Pode ser compilado com mingw, mas recomendo fortemente o uso do WSL com Ubuntu para Windows 10.
 
-Updated: 
-Yes thanks to @kanhavishva
-Available in: https://github.com/kanhavishva/keyhunt
+Atualizado: 
+Sim, graças a @kanhavishva.
+Disponível em: https://github.com/kanhavishva/keyhunt.
 
-Also, thanks to @WanderingPhilosopher
-Available in: https://github.com/WanderingPhilosopher/keyhunt
+Também, graças a @WanderingPhilosopher.
+Disponível em: https://github.com/WanderingPhilosopher/keyhunt.
 
-Also thanks to @XopMC
-Available in: https://github.com/XopMC/keyhunt-win
+Também, graças a @XopMC.
+Disponível em: https://github.com/XopMC/keyhunt-win.
 
 
-## Thanks
+## Agradecimentos
 
-This program was possible thanks to 
+Este programa foi possível graças a:
 - IceLand
 - kanhavishva
 - XopMC
@@ -1338,25 +1343,25 @@ This program was possible thanks to
 - Malboro Man
 - NetSec
 - Jean Luc Pons
-- All the group of CryptoHunters that made this program possible
-- All the users that tested it, report bugs, requested improvements and shared his knowledge.
+- Todo o grupo de CryptoHunters que tornou este programa possível
+- Todos os usuários que testaram, relataram bugs, solicitaram melhorias e compartilharam seus conhecimentos.
 
 
-## Donations
+## Doações
 
 - BTC: 1Coffee1jV4gB5gaXfHgSHDz9xx9QSECVW
 - ETH: 0x6222978c984C22d21b11b5b6b0Dd839C75821069
 - DOGE: DKAG4g2HwVFCLzs7YWdgtcsK6v5jym1ErV
 
-All the donations will be use only for two things:
+Todas as doações serão usadas apenas para duas coisas:
 
-- Native Windows version with 0 external dependencies.
-- Get an affordable desktop computer with decent GPU not high end, just to start the GPU version.
+- Versão nativa do Windows sem dependências externas.
+- Obter um computador desktop acessível com GPU decente, não de ponta, apenas para iniciar a versão GPU.
 
 ## Testnet
 
-I also need to make some test in testnet network if you have some Testnet balance can you help me with donations in my testnet address:
+Também preciso fazer alguns testes na rede testnet. Se você tiver algum saldo na Testnet, pode me ajudar com doações para meu endereço de testnet:
 
-Address: msKcxhizYWVvxCACFEG4GCSK1xYrEkib5A
+Endereço: msKcxhizYWVvxCACFEG4GCSK1xYrEkib5A
 
-Thank you.
+Obrigado.

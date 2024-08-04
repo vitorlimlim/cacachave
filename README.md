@@ -18,7 +18,7 @@ Funciona para Ethereum
 - Executar contra o puzzle 66 (modo endereço)
 
 ```
-./keyhunt -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
+./cacachave -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
 ```
 
 Você precisa adicionar `-t numberThreads` para obter uma melhor velocidade
@@ -26,7 +26,7 @@ Você precisa adicionar `-t numberThreads` para obter uma melhor velocidade
 - Executar contra o Puzzle 125 (modo bsgs)
 
 ```
-./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R
+./cacachave -m bsgs -f tests/125.txt -b 125 -q -s 10 -R
 ```
 
 Você precisa adicionar `-t numberThreads` e `-k factor` para obter uma melhor velocidade
@@ -81,13 +81,13 @@ apt install libgmp-dev -y
 Para clonar o repositório:
 
 ```
-git clone https://github.com/albertobsd/keyhunt.git
+git clone https://github.com/lmajowka/cacachave.git
 ```
 
-não se esqueça de mudar para o diretório keyhunt (Mas eu não estou aqui para ensinar comandos Linux)
+não se esqueça de mudar para o diretório cacachave (Mas eu não estou aqui para ensinar comandos Linux)
 
 ```
-cd keyhunt
+cd cacachave
 ```
 
 Primeira compilação:
@@ -105,7 +105,7 @@ make legacy
 e então executar com `-h` para ver a ajuda
 
 ```
-./keyhunt -h
+./cacachave -h
 ```
 
 ## ¡Beta!
@@ -115,7 +115,7 @@ Esta versão também pode ter alguns bugs. por favor, relate-os.
 
 # Modos
 
-Keyhunt pode trabalhar de diferentes maneiras em diferentes velocidades.
+cacachave pode trabalhar de diferentes maneiras em diferentes velocidades.
 
 Os modos disponíveis atualmente são:
 - address
@@ -140,9 +140,9 @@ Exemplo de endereços de puzzles resolvidos, este arquivo já está no repositó
 ...
 ```
 
-Para direcionar esse arquivo, precisamos executar o keyhunt com esta linha
+Para direcionar esse arquivo, precisamos executar o cacachave com esta linha
 
-`./keyhunt -m address -f tests/1to32.txt -r 1:FFFFFFFF`
+`./cacachave -m address -f tests/1to32.txt -r 1:FFFFFFFF`
 
 saída:
 ```
@@ -180,7 +180,7 @@ Neste modo, você pode especificar para buscar apenas endereços comprimidos ou 
 Tente sua sorte com o parâmetro aleatório `-R` contra o puzzle #66
 
 ```
-./keyhunt -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
+./cacachave -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
 ```
 
 Observe a mudança de `-r 1:FFFFFFFF` para `-b 66`, com -b você pode especificar o intervalo de bits.
@@ -212,7 +212,7 @@ Para buscar apenas um endereço de vanity como `1Good1` ou `1MyKey`, use o segui
 comando completo
 
 ```
-./keyhunt -m vanity -l compress -R -b 256 -v 1Good1 -v 1MyKey
+./cacachave -m vanity -l compress -R -b 256 -v 1Good1 -v 1MyKey
 ```
 
 saída:
@@ -242,7 +242,7 @@ rmd160 ad63f02cb68254ce12982e5e312bd51e8a239a84
 comando para buscar múltiplos endereços de vanity a partir de um arquivo `-f filename.txt`.
 
 ```
-./keyhunt -m vanity -f ~/main/keyhunt/vanitytargets.txt -l compress -R -b 256 -e -s 10 -q 
+./cacachave -m vanity -f ~/main/keyhunt/vanitytargets.txt -l compress -R -b 256 -e -s 10 -q 
 ```
 
 Saída:
@@ -286,7 +286,7 @@ exemplo de arquivo `tests/1to32.rmd`:
 para direcionar esse arquivo você precisa executar a próxima linha:
 
 ```
-./keyhunt -m rmd160 -f tests/1to32.rmd -r 1:FFFFFFFF -l compress -s 5
+./cacachave -m rmd160 -f tests/1to32.rmd -r 1:FFFFFFFF -l compress -s 5
 ```
 
 saída:
@@ -320,7 +320,7 @@ tente sua sorte com o próximo arquivo para o puzzle #66
 
 
 ```
-./keyhunt -m rmd160 -f tests/66.rmd -b 66 -l compress -R -q
+./cacachave -m rmd160 -f tests/66.rmd -b 66 -l compress -R -q
 ```
 
 Saída:
@@ -371,9 +371,9 @@ Alguns valores subtraídos do puzzle *40*
 ```
 
 
-Agora você pode usar keyhunt contra alguns milhares de valores do puzzle 40:
+Agora você pode usar cacachave contra alguns milhares de valores do puzzle 40:
 
-```./keyhunt -m xpoint -f tests/substracted40.txt -n 65536 -t 4 -b 40```
+```./cacachave -m xpoint -f tests/substracted40.txt -n 65536 -t 4 -b 40```
 
 Saída:
 
@@ -409,7 +409,7 @@ Este é um exemplo fácil, eu tentei o puzzle 120 com mais de 500 milhões de ch
 
 Teste sua sorte com o puzzle 120 com xpoint:
 
-```./keyhunt -m xpoint -f tests/120.txt -t 4 -b 125 -R -q```
+```./cacachave -m xpoint -f tests/120.txt -t 4 -b 125 -R -q```
 
 Saída:
 
@@ -552,7 +552,7 @@ c01bf430a97cbcdaedddba87ef4ea21c456cebdb
 
 Para direcionar esse arquivo, você precisa fazer:
 
-```./keyhunt -m pub2rmd -f tests/puzzleswopublickey.txt -t 6 -q```
+```./cacachave -m pub2rmd -f tests/puzzleswopublickey.txt -t 6 -q```
 
 Saída:
 
@@ -575,7 +575,7 @@ Você pode deixá-lo rodar por um tempo junto com outros scripts, se você conse
 
 ## modo bsgs (baby step giant step)
 
-Keyhunt implementa o algoritmo BSGS para buscar chaves privadas para uma chave pública conhecida.
+cacachave implementa o algoritmo BSGS para buscar chaves privadas para uma chave pública conhecida.
 
 O arquivo de entrada precisa ter uma lista de chaves públicas, comprimidas ou não comprimidas, essas chaves públicas podem ser misturadas no mesmo arquivo, uma chave pública por linha e qualquer outra palavra seguida de um espaço é ignorada. Exemplo do arquivo:
 
@@ -597,10 +597,10 @@ Aliás, qualquer palavra seguida de um espaço após a chave pública é ignorad
 
 ### Criação de Arquivo
 
-o modo bsgs `-m bsgs` agora pode criar automaticamente os arquivos necessários para acelerar o processo de carregamento inicial do keyhunt, isso inclui a criação de filtros bloom e da tabela bp.
+o modo bsgs `-m bsgs` agora pode criar automaticamente os arquivos necessários para acelerar o processo de carregamento inicial do cacachave, isso inclui a criação de filtros bloom e da tabela bp.
 
-Para solicitar ao keyhunt a criação desses arquivos automaticamente, use `-S` (S maiúsculo) para SALVAR e LER arquivos.
-Os 3 arquivos necessários para o keyhunt podem variar de tamanho dependendo dos seus valores de `-n` e `-k`, então faça seu teste e fique com uma combinação de valores (n, k) ou você pode acabar com centenas de arquivos desnecessários.
+Para solicitar ao cacachave a criação desses arquivos automaticamente, use `-S` (S maiúsculo) para SALVAR e LER arquivos.
+Os 3 arquivos necessários para o cacachave podem variar de tamanho dependendo dos seus valores de `-n` e `-k`, então faça seu teste e fique com uma combinação de valores (n, k) ou você pode acabar com centenas de arquivos desnecessários.
 
 O tamanho dos 3 arquivos é igual à quantidade de memória usada em tempo de execução.
 
@@ -609,7 +609,7 @@ Os arquivos são criados se não existirem quando você executar o programa pela
 exemplo de criação de arquivo:
 
 ```
-./keyhunt -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
+./cacachave -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
 [+] Quiet thread output
@@ -628,7 +628,7 @@ exemplo de criação de arquivo:
 [+] processing 4194304/4194304 bP points : 100%
 [+] Making checkums .. ... done
 [+] Sorting 4096 elements... Done!
-[+] Writing bloom filter to file keyhunt_bsgs_4_4194304.blm .... Done!
+[+] Writing bloom filter to file cacachave_bsgs_4_4194304.blm .... Done!
 [+] Writing bloom filter to file keyhunt_bsgs_6_131072.blm .... Done!
 [+] Writing bP Table to file keyhunt_bsgs_2_4096.tbl .. Done!
 [+] Writing bloom filter to file keyhunt_bsgs_7_4096.blm .... Done!
@@ -638,7 +638,7 @@ exemplo de criação de arquivo:
 Quando executamos o programa pela segunda vez, os arquivos agora são lidos e o processamento dos pontos bP é omitido:
 
 ```
-./keyhunt -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
+./cacachave -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
 [+] Quiet thread output
@@ -668,13 +668,13 @@ Todos os próximos exemplos foram feitos com a opção `-S`. Eu apenas omito ess
 Para tentar encontrar essas chaves privadas, esta é a linha de execução:
 
 ```
-time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
+time ./cacachave -m bsgs -f tests/test120.txt -b 120 -S
 ```
 
 Saída:
 
 ```
-time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
+time ./cacachave -m bsgs -f tests/test120.txt -b 120 -S
 [+] Version 0
 
 .2.230430 Satoshi Quest, developed by AlbertoBSD
@@ -712,9 +712,9 @@ Teste o puzzle 120 com a próxima chave pública:
 
 Linha de execução em modo aleatório `-R` ou -B random
 
-```./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R```
+```./cacachave -m bsgs -f tests/125.txt -b 125 -q -s 10 -R```
 
-```./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -B random```
+```./cacachave -m bsgs -f tests/125.txt -b 125 -q -s 10 -B random```
 
 
 Exemplo de Saída:
@@ -749,13 +749,13 @@ Podemos acelerar nosso processo selecionando um valor K maior `-k valor`, btw o 
 
 Exemplo:
 ```
-./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
+./cacachave -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
 ```
 
 Saída:
 
 ```
-./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
+./cacachave -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
 [+] K factor 20
@@ -788,7 +788,7 @@ se você quiser mais velocidade, use um valor k maior, como 128, isso usará cer
 
 
 ```
-./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 128 -S
+./cacachave -m bsgs -f tests/125.txt -b 125 -R -k 128 -S
 ```
 
 Saída:
@@ -823,7 +823,7 @@ Eu já testei com cerca de **8 GB** usados com `-k 512` e obtive **~46 Petakeys/
 
 com **8** threads
 
-`./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 512 -q -t 8 -s 10 -S`
+`./cacachave -m bsgs -f tests/125.txt -b 125 -R -k 512 -q -t 8 -s 10 -S`
 
 Saída:
 
@@ -909,7 +909,7 @@ Ocultando a velocidade:
 comando:
 
 ```
-time ./keyhunt -m bsgs -t 6 -f tests/in.txt -r 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000:49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5effffffffffffffff -n 0x1000000000000000 -M -s 0
+time ./cacachave -m bsgs -t 6 -f tests/in.txt -r 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000:49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5effffffffffffffff -n 0x1000000000000000 -M -s 0
 ```
 
 Saída:
@@ -1092,7 +1092,7 @@ Chave pública:
 
 Comando
 ```
-time ./keyhunt -m bsgs -t 8 -f tests/63.pub -k 512 -s 0 -S -b 63
+time ./cacachave -m bsgs -t 8 -f tests/63.pub -k 512 -s 0 -S -b 63
 ```
 
 saída:
@@ -1162,7 +1162,7 @@ Chave pública: 02ee0cf78d13b4aae9c8777a0f93dff7f5be3855bd2c0f85370f861c69bb5b53
 Selecione uma chave pública que se ajuste à sua velocidade atual, salve-a em um arquivo `testpublickey.txt` e teste com:
 
 ```
-./keyhunt -m bsgs -f testpublickey.txt -b 120 -q
+./cacachave -m bsgs -f testpublickey.txt -b 120 -q
 ```
 
 Altere os valores de k, n e t.
@@ -1187,7 +1187,7 @@ O arquivo de entrada pode ser uma lista de endereços ou hashes rmd das chaves d
 Exemplo de comando:
 
 ```
-./keyhunt -m minikeys -f tests/minikeys.txt -C SG64GZqySYwBm9KxE1wJ28 -n 0x10000
+./cacachave -m minikeys -f tests/minikeys.txt -C SG64GZqySYwBm9KxE1wJ28 -n 0x10000
 ```
 
 Saída:
@@ -1212,7 +1212,7 @@ address: 15azScMmHvFPAQfQafrKr48E9MqRRXSnVv
 comando minikeys aleatório
 
 ```
-./keyhunt -m minikeys -f tests/minikeys.txt -n 0x10000 -q -R
+./cacachave -m minikeys -f tests/minikeys.txt -n 0x10000 -q -R
 ```
 
 ```
@@ -1241,7 +1241,7 @@ para testar a funcionalidade do ethereum, você pode usar o arquivo de amostra `
 comando: 
 
 ```
-./keyhunt -c eth -f tests/1to32.eth -r 1:100000000 -M
+./cacachave -c eth -f tests/1to32.eth -r 1:100000000 -M
 ```
 
 saída:
